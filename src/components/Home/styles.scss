@@ -1,0 +1,158 @@
+.cardCont{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  & .cardAdd {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 240px;
+    min-height: 240px;
+    margin: 24px;
+    background-color: #727bd2;
+    border: 2px solid #727bd2;
+    color: white;
+    font-size: 36px;
+    border-radius: 3px;
+    box-shadow: 3px 6px 12px #c1c4c5;
+  }
+
+  & .cardAdd:hover {
+    background-color: #6263bb;
+  }
+
+  & .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width:240px ;
+    height: max-content;
+    margin: 24px;
+    border: 2px solid #727bd2;
+    border-radius: 3px;
+    box-shadow: 3px 6px 12px #c1c4c5;
+
+    & .cardHeader {
+      background-color: #727bd2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 60px;
+      width: 240px;
+      color: white;
+      font-size: 20px;
+
+      & label{
+        font-size: 24px;
+      }
+    }
+
+    & .cardBody {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: max-content;
+
+      & .cardBodyTop {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 240px;
+        min-height: 66px;
+
+        & button {
+          cursor: pointer;
+          height: 36px;
+          width: 120px;
+          color: white;
+          background-color: royalblue;
+          border: 2px solid royalblue;
+          border-radius: 3px;
+          outline: none;
+        }
+
+        & button:hover {
+          background-color: #314f97;
+          border: 2px solid #314f97;
+        }
+      }
+
+      & .cardBodyBot {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 240px;
+        min-height: 66px;
+
+        & .cardBodyBotLeft {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-width: 120px;
+          min-height: 66px;
+
+          & button {
+            cursor: pointer;
+            min-width: 96px;
+            min-height: 36px;
+            color: white;
+            background-color: #23a523;
+            border: 2px solid #23a523;
+            border-radius: 3px;
+            outline: none;
+          }
+
+          & button:hover {
+            background-color: #207e20;
+            border: 2px solid #207e20;
+          }
+        }
+
+        & .cardBodyBotRight {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-width: 120px;
+          min-height: 66px;
+
+          & button {
+            cursor: pointer;
+            height: 36px;
+            width: 96px;
+            color: white;
+            background-color: red;
+            border: 2px solid red;
+            border-radius: 3px;
+            outline: none;
+          }
+
+          & button:hover {
+            background-color: #c50000;
+            border: 2px solid #c50000;
+          }
+        }
+      }
+    }
+
+    & .cardFooter {
+      background-color: #727bd2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 240px;
+      color: white;
+      font-size: 24px;
+      min-height: 48px;
+
+    }
+  }
+}

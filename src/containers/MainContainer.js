@@ -1,7 +1,9 @@
 import React, {Component, Fragment} from 'react';
 import styles from "./styles.scss";
-import Questionss from "../components/Questionss";
+import Preview from "../components/Preview";
 import Quiz from "../components/Quiz";
+import Home from "../components/Home";
+import Update from "../components/Update";
 
 
 class MainContainer extends Component {
@@ -19,8 +21,10 @@ class MainContainer extends Component {
                 <div className={styles.container}>
                     <div className={styles.row}>
                         <div className={styles.colMd12}>
-                            {/*<Questionss/>*/}
+                            <Preview/>
                             <Quiz/>
+                            <Home/>
+                            <Update/>
                         </div>
                     </div>
                 </div>

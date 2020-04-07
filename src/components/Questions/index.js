@@ -7,7 +7,6 @@ class Questions extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
         }
     }
 
@@ -15,20 +14,16 @@ class Questions extends Component {
         event.preventDefault();
     };
 
-    correctAnswerChange=(event)=>{
-        let name=event.target.getAttribute("name");
-        this.setState({[`q${name}CorrectAnswer`]:event.target.value});
+    correctAnswerChange=(event,name)=>{
+        this.setState({[`q${name}CorrectAnswer`]:event.target.value*1});
     };
 
-    answerChange=(event)=> {
-        let count=event.target.getAttribute("data-key");
-        let que=event.target.getAttribute("que");
+    answerChange=(event,count,que)=> {
         this.setState({[`q${que}answer${count}`]:event.target.value});
         event.preventDefault();
     };
 
-    questionChange=(event)=> {
-        let count=event.target.getAttribute("data-key")
+    questionChange=(event,count)=> {
         this.setState({[`question${count}`]:event.target.value});
         event.preventDefault();
     };
@@ -63,7 +58,7 @@ class Questions extends Component {
                 questions
             });
             localStorage.setItem('data', JSON.stringify(restoredData));
-            alert("Questions Added")
+            alert("Questions Added");
             location.reload()
         }
         else{
@@ -72,7 +67,7 @@ class Questions extends Component {
     };
 
     pushIt=()=> {
-        let data=JSON.parse(localStorage.getItem('data'))
+        let data=JSON.parse(localStorage.getItem('data'));
         if (data===null){
             const data={
                 quiz:[]
@@ -85,25 +80,22 @@ class Questions extends Component {
         }
     };
 
-    downQuestion=(event)=>{
-        let dataKey=event.target.getAttribute("data-key");
-        let dataKey2=event.target.getAttribute("data-key2");
-        let answerCount=this.props.state[`answerCountArray${dataKey}`];
-        this.props.downQuestionCount(dataKey2);
-        delete this.state[`question${dataKey}`];
+    downQuestion=(event,index)=>{
+        const count=event.target.value;
+        const answerCount=this.props.state[`answerCountArray${count}`];
+        delete this.state[`question${count}`];
+        this.props.downQuestionCount(index);
         return answerCount.map((d,index)=>{
-            return delete this.state[`q${dataKey}answer${index+1}`];
+            return delete this.state[`q${count}answer${index+1}`];
         });
     };
 
-    downAnswerCount=(event)=>{
-        let dataKey2 =event.target.getAttribute("data-key2");
-        let dataKey3=event.target.getAttribute("data-key3");
-        let dataKey=event.target.getAttribute("data-key");
-        delete this.state[`q${dataKey2}answer${dataKey}`];
-        let answerArray =this.props.state[`answerCountArray${dataKey2}`];
-        answerArray.splice(dataKey3, 1);
-        this.setState({[`answerCountArray${dataKey2}`]:answerArray})
+    downAnswerCount=(event,a,b)=>{
+        const del=event.target.value;
+        delete this.state[`q${b}answer${a}`];
+        const answerArray =this.props.state[`answerCountArray${b}`];
+        answerArray.splice(del, 1);
+        this.setState({[`answerCountArray${b}`]:answerArray})
     };
 
     render() {
@@ -112,16 +104,11 @@ class Questions extends Component {
                 {
                     this.props.questionCountArray.map((da,index)=>{
                         return (
-                            <div key={da} data-key={da} className={styles.questionsContainer}>
+                            <div key={da} className={styles.questionsContainer}>
                                 <div className={styles.questions}>
                                     <form onSubmit={this.onSubmit}>
-                                        <label>
-                                            {index+1}.Question {this.props.questionCountArray.length>1 ?
-                                            <button data-key={da} data-key2={index} onClick={this.downQuestion}>
-                                                <i className="fas fa-trash-alt"/>
-                                            </button>:null}
-                                        </label>
-                                        <input data-key={da} data-key2={index} type="text" value={this.state[`question${da}`]} onChange={this.questionChange}/>
+                                        <label>{index+1}.Question</label>
+                                        <input type="text" value={this.state[`question${da}`]} onChange={event=>this.questionChange(event,da)}/>
                                     </form>
                                 </div>
                                 <div className={styles.answers}>
@@ -131,11 +118,11 @@ class Questions extends Component {
                                                 return (
                                                     <div key={d} className={styles.inputDiv}>
                                                         <label>{indexx+1}.</label>
-                                                        <input data-key={d} name={da} value={indexx} type="radio" onChange={this.correctAnswerChange}/>
-                                                        <input  data-key={d} que={da} value={this.state[`q${da}answer${d}`]} type="text"  onChange={this.answerChange}/>
+                                                        <input name={da} value={indexx} type="radio" onChange={event=>this.correctAnswerChange(event,da)}/>
+                                                        <input value={this.state[`q${da}answer${d}`]} type="text"  onChange={event=>this.answerChange(event,d,da)}/>
                                                         {
                                                             this.props.state[`answerCountArray${da}`].length>2
-                                                                ?<button data-key={d} data-key2={da} data-key3={indexx} onClick={this.downAnswerCount}>Delete</button>
+                                                                ?<button value={indexx} onClick={event=>this.downAnswerCount(event,d,da)}>Delete</button>
                                                                 :null
                                                         }
                                                     </div>
@@ -143,8 +130,12 @@ class Questions extends Component {
                                         }
                                         )}
                                     </form>
-                                    <button data-key={da} onClick={this.props.upAnswerCount}>Add an Answer</button>
+                                    <button value={da} onClick={this.props.upAnswerCount}>Add an Answer</button>
                                 </div>
+                                {this.props.questionCountArray.length>1 ?
+                                    <button value={da} onClick={event=>this.downQuestion(event,index)}>
+                                        <i className="fas fa-trash-alt"/>
+                                    </button>:null}
                             </div>
                         )
                     })

@@ -7,7 +7,7 @@
 
   & button {
     cursor: pointer;
-    width: 100%;
+    width: 72%;
     height: 26px;
     color: white;
     background-color: #23a523;
@@ -21,11 +21,36 @@
     border: 2px solid #207e20;
   }
 
+  & .examName {
+    display: flex;
+    justify-content: center;
+    width: 96%;
+    margin: 12px 0 24px;
+
+    & form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      & label {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      & input {
+        border: 1px solid lightgray;
+        border-radius: 3px;
+        height: 24px;
+        outline: none;
+      }
+    }
+  }
+
   & .questionsContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 72%;
 
     & button {
       height: max-content;
