@@ -13,7 +13,7 @@ class Home extends Component {
 
     deleteQuiz=(event)=>{
         let data = this.state.data;
-        data.quiz.splice(event.target.value,1);
+        data.quizzes.splice(event.target.value,1);
         this.setState({data:data});
         localStorage.setItem('data', JSON.stringify(data));
     };
@@ -21,24 +21,24 @@ class Home extends Component {
     renderCard=()=>{
         const {data}=this.state;
         if (data===null)
-        {null}
+        {return null}
         else
         {
             return(
-            data.quiz.map((d,index)=>{
+            data.quizzes.map((d,index)=>{
                 return(
                     <div key={index} className={styles.card}>
                         <div className={styles.cardHeader}>
                             <label>Quiz Title:</label>
-                            {d.name}
+                            {d.quizTitle}
                         </div>
                         <div className={styles.cardBody}>
                             <div className={styles.cardBodyTop}>
-                                <button>Preview</button>
+                                <button onClick={()=>this.props.changeExamIndex(index,"preview")}>Preview</button>
                             </div>
                             <div className={styles.cardBodyBot}>
                                 <div className={styles.cardBodyBotLeft}>
-                                    <button>Update</button>
+                                    <button onClick={()=>this.props.changeExamIndex(index,"update")}>Update</button>
                                 </div>
                                 <div className={styles.cardBodyBotRight}>
                                     <button value={index} onClick={this.deleteQuiz}>Delete</button>
@@ -47,9 +47,7 @@ class Home extends Component {
                         </div>
                         <div className={styles.cardFooter}>
                             <label>Total Questions:</label>
-                            {d.questions.map(da=>{
-                                return da.question.length
-                            })}
+                            {d.questions.length}
                         </div>
                     </div>
                 )
@@ -58,16 +56,10 @@ class Home extends Component {
     };
 
     render() {
-        // console.log(this.state.data.quiz.map((d,index)=>{
-        //     return d.questions.map(da=>{
-        //         return da.question.length
-        //     })
-        // }));
-
         return (
-            <div className={styles.cardCont}>
-                <div className={styles.cardAdd}>
-                    Add Quiz
+            <div className={styles.cardCont} >
+                <div className={styles.cardAdd} onClick={()=>this.props.changeComponent("create")}>
+                    Add a Quiz
                     <i className="far fa-plus-square fa-4x"/>
                 </div>
                 {this.renderCard()}

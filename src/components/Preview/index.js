@@ -14,73 +14,75 @@ class Preview extends Component {
     }
 
     nextQuestion=()=>{
-        this.setState({count: this.state.count+1})
+        const {correctAnswer}=this.state
+        if (correctAnswer[this.state.count]===undefined)
+        {
+            correctAnswer[this.state.count]=null
+        }
+        this.setState({count: this.state.count+1,correctAnswer:correctAnswer})
+
     };
 
     previousQuestion=()=>{
         this.setState({count: this.state.count-1})
     };
 
-    checkValue=()=> {
-        let a=this.state.data.quiz[0].questions.map(d=>{
-            return d.correctAnswer});
-        let c=a[0]
-        let b=this.state.correctAnswer;
-        let matches = 0;
-        for (let i=0;i<c.length;i++) {
-            if (b.indexOf(c[0]) !== -1)
-                matches=matches+1;
+    checkValue=(value)=> {
+        const {data,correctAnswer,count}=this.state;
+        if (correctAnswer[count]===undefined)
+        {
+            correctAnswer[count]=null
         }
-        return alert(matches);
+        this.setState({correctAnswer:correctAnswer});
+        let a=data.quizzes[this.props.examIndex].questions.map(d=>{
+            return d.correctAnswer
+        });
+        let b=correctAnswer;
+        let correctCount = 0;
+        for (let i=0;i<a.length;i++) {
+            if (a[i]==b[i])
+                correctCount++;
+        }
+        this.props.changeComponent(value)
+        return alert(correctCount+" correct answer");
     };
 
     getValues=(event)=>{
         const {correctAnswer,count}=this.state;
-        const value=event.target.value*1;
-        correctAnswer.splice(count, 1);
-        correctAnswer.push(value);
+        correctAnswer[count]=event.target.value;
         this.setState({correctAnswer:correctAnswer});
-        console.log(this.state.correctAnswer)
     };
 
     render() {
-        const data=this.state.data.quiz;
+        const {examIndex}=this.props;
+        const data=this.state.data.quizzes;
         const {count,correctAnswer}=this.state;
         return (
             <div className={styles.cardCont}>
                 <div className={styles.card}>
                     <div className={styles.cardHeader}>
                         <label>Quiz Title:</label>
-                        {data[0].name}
+                        {data[examIndex].quizTitle}
                     </div>
                     <div className={styles.cardBody}>
-                        {data[0].questions.map((d,index)=>{
-                            return <label key={index}>{index+count+1}. {d.question[count]}</label>
-                        })}
+                        <label>{count+1}. {data[examIndex].questions[count].question}</label>
                     </div>
                     {
-                        data[0].questions.map((d,index)=>{
-                            return d.answer[count].map((da,i)=>{
-                                return (
-                                    <div key={i} className={styles.cardFooter}>
-                                        <input onChange={this.getValues} type="radio" name={count} value={i} checked={true}/>
-                                        <label>
-                                            {i+1}. {da}
-                                        </label>
-                                    </div>
-                                )
-                            })
+                        data[examIndex].questions[count].answers.map((da,i)=>{
+                            return(
+                                <div key={i} className={styles.cardFooter}>
+                                    <input key={i+""+count} a={i+""+count} type="radio" name={count} value={i} onChange={this.getValues}/>
+                                    <label>{i+1}. {da.answer}</label>
+                                </div>
+                            )
                         })
                     }
                     <div className={styles.cardFooterNav}>
-                        {data[0].questions.map((d,index)=>{
-                            if (count+1===d.question.length) {
-                                return <i key={index} onClick={this.checkValue} className="fas fa-check fa-lg"/>
-                            }
-                            else {
-                                return <i key={index} onClick={this.nextQuestion} className="fas fa-arrow-right fa-lg"/>
-                            }
-                        })}
+                        {
+                            count+1===data[examIndex].questions.length
+                                ? <i onClick={()=>this.checkValue("home")} className="fas fa-check fa-lg"/>
+                                : <i onClick={this.nextQuestion} className="fas fa-arrow-right fa-lg"/>
+                        }
                         {count>=1? <i onClick={this.previousQuestion} className="fas fa-arrow-left fa-lg"/>:null}
                     </div>
                 </div>

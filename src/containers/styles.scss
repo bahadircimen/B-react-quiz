@@ -7,6 +7,16 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+
+    & .back {
+      cursor: pointer;
+      flex: 0 0 100%;
+      max-width: 100%;
+      justify-content: flex-start;
+      margin: 0 0 0 48px ;
+      color: #727bd2;
+    }
+
     & [class*="col"] {
       display: flex;
       justify-content: center;
