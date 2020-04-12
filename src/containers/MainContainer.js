@@ -1,9 +1,10 @@
 import React, {Component, Fragment} from 'react';
 import styles from "./styles.scss";
-import Preview from "../components/Preview";
-import Home from "../components/Home";
-import Updatee from "../components/Updatee";
-import Create from "../components/Create";
+import Preview from "../Screens/Preview";
+import Home from "../Screens/Home";
+import Updatee from "../Screens/Updatee";
+import Create from "../Screens/Create";
+import Tests from "../Screens/Tests";
 
 
 class MainContainer extends Component {
@@ -60,6 +61,7 @@ class MainContainer extends Component {
                             }
                         </div>
                         <div className={styles.colMd12}>
+                            <Tests/>
                             <Component
                                 changeComponent={this.changeComponent}
                                 changeExamIndex={this.changeExamIndex}
