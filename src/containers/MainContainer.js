@@ -23,16 +23,6 @@ class MainContainer extends Component {
         }
     }
 
-    componentDidMount(){
-        const data=JSON.parse(localStorage.getItem('data'));
-        const dataa={quizzes:[]}
-        if (data===null){
-            localStorage.setItem('data', JSON.stringify(dataa));
-        }
-        else{
-            null
-        }
-    }
 
     changeComponent=(value)=>{
         let {component}=this.state;
