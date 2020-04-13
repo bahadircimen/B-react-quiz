@@ -10,11 +10,11 @@ class Tests extends Component {
     }
 
     async componentWillMount(){
-        let quiz=await dataService.getQuiz();
-        let questions=await dataService.getQuestions();
-        let answers=await dataService.getAnswers();
-        let quizTitle=await dataService.getQuizTitle();
-        this.setState({quiz:quiz,questions:questions,answers:answers,quizTitle:quizTitle})
+        // let quiz=await dataService.getQuiz();
+        // let questions=await dataService.getQuestions();
+        // let answers=await dataService.getAnswers();
+        // let quizTitle=await dataService.getQuizTitle();
+        // this.setState({quiz:quiz,questions:questions,answers:answers,quizTitle:quizTitle})
     }
 
     render() {

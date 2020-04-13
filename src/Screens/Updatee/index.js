@@ -9,6 +9,8 @@ class Updatee extends Component {
             answer: "",
         };
 
+        this.initial
+
         this.state = {
             localData:JSON.parse(localStorage.getItem('data')),
             data:JSON.parse(localStorage.getItem('data')).quizzes[this.props.examIndex]

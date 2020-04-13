@@ -12,17 +12,34 @@ class MainContainer extends Component {
         super(props);
         this.components ={
             home: Home,
-            update: Updatee,
+            update: formContainer,
             preview: Preview,
-            create: Create
+            create: formContainer,
         };
 
         this.state = {
-            component:"home",
-            examIndex:0,
+            component: "home",
+            examIndex: 0,
+            data: {
+                quizzes: []
+            }
         }
     }
 
+    componentDidMount(){
+        const data=JSON.parse(localStorage.getItem('data'));
+        if(data){
+           this.setState({
+               data: data
+           });
+        }
+    }
+
+    componentDidUpdate(prevState){
+        if(prevState.data !== this.state.data){
+            localStorage.setItem("data", JSON.stringify(this.state.data));
+        }
+    }
 
     changeComponent=(value)=>{
         let {component}=this.state;
@@ -38,6 +55,7 @@ class MainContainer extends Component {
     };
 
     render() {
+        const { component } = this.state;
         const Component = this.components[this.state.component];
         return (
             <Fragment>
@@ -51,12 +69,13 @@ class MainContainer extends Component {
                             }
                         </div>
                         <div className={styles.colMd12}>
-                            <Tests/>
+                            {/*<Tests/>*/}
                             <Component
                                 changeComponent={this.changeComponent}
                                 changeExamIndex={this.changeExamIndex}
                                 examIndex={this.state.examIndex}
                                 data={this.state.data}
+                                component={component}
                             />
                         </div>
                     </div>

@@ -1,11 +1,7 @@
 export default {
 
-	async getData() {
+	async getData(index=0) {
 		return JSON.parse(localStorage.getItem('data'))
-	},
-
-	async setData(data) {
-		return localStorage.setItem('data', JSON.stringify(data))
 	},
 
 	async getQuiz(index=0) {

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import styles from "./styles.scss";
-import dataService from "../../services/dataService";
 
 
 
@@ -9,28 +8,6 @@ class Home extends Component {
         super(props);
         this.state = {
             data: JSON.parse(localStorage.getItem('data')),
-        }
-    }
-
-    // componentDidMount(){
-    //     const data=JSON.parse(localStorage.getItem('data'));
-    //     const dataa={quizzes:[]}
-    //     if (data===null){
-    //         localStorage.setItem('data', JSON.stringify(dataa));
-    //     }
-    //     else{
-    //         null
-    //     }
-    // }
-
-    async componentDidMount(){
-        const data=await dataService.getData()
-        const dataa={quizzes:[]}
-        if (data===null){
-            await dataService.setData(dataa)
-        }
-        else{
-            null
         }
     }
 
