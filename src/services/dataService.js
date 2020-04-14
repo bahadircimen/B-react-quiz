@@ -1,26 +1,30 @@
 export default {
 
-	async getData(index=0) {
+	async getData() {
 		return JSON.parse(localStorage.getItem('data'))
 	},
 
-	async getQuiz(index=0) {
+	async setData(data) {
+		return localStorage.setItem('data', JSON.stringify(data))
+	},
+
+	async getQuiz(index) {
 		return JSON.parse(localStorage.getItem('data')).quizzes[index]
 	},
 
-	async getQuestions(index=0) {
-		let a=await this.getQuiz();
-		return a.questions
-	},
-
-	async getAnswers(index=0) {
-		let a=await this.getQuiz();
-		return a.answers
-	},
-
-	async getQuizTitle(index=0) {
-		let a=await this.getQuiz();
-		return a.quizTitle
-	},
+	// async getQuestions(index=0) {
+	// 	let a=await this.getQuiz();
+	// 	return a.questions
+	// },
+	//
+	// async getAnswers(index=0) {
+	// 	let a=await this.getQuiz();
+	// 	return a.answers
+	// },
+	//
+	// async getQuizTitle(index=0) {
+	// 	let a=await this.getQuiz();
+	// 	return a.quizTitle
+	// },
 
 }

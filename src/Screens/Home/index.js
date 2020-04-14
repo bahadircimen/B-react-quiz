@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styles from "./styles.scss";
+import dataService from "../../services/dataService";
 
 
 
@@ -8,6 +9,17 @@ class Home extends Component {
         super(props);
         this.state = {
             data: JSON.parse(localStorage.getItem('data')),
+        }
+    }
+
+    async componentDidMount(){
+        const data=await dataService.getData()
+        const dataa={quizzes:[]}
+        if (data===null){
+            await dataService.setData(dataa)
+        }
+        else{
+            null
         }
     }
 

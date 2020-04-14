@@ -2,9 +2,7 @@ import React, {Component, Fragment} from 'react';
 import styles from "./styles.scss";
 import Preview from "../Screens/Preview";
 import Home from "../Screens/Home";
-import Updatee from "../Screens/Updatee";
-import Create from "../Screens/Create";
-import Tests from "../Screens/Tests";
+import QuizFormContainer from "../Screens/QuizFormContainer";
 
 
 class MainContainer extends Component {
@@ -12,34 +10,17 @@ class MainContainer extends Component {
         super(props);
         this.components ={
             home: Home,
-            update: formContainer,
+            update: QuizFormContainer,
             preview: Preview,
-            create: formContainer,
+            create: QuizFormContainer
         };
 
         this.state = {
-            component: "home",
-            examIndex: 0,
-            data: {
-                quizzes: []
-            }
+            component:"home",
+            examIndex:0,
         }
     }
 
-    componentDidMount(){
-        const data=JSON.parse(localStorage.getItem('data'));
-        if(data){
-           this.setState({
-               data: data
-           });
-        }
-    }
-
-    componentDidUpdate(prevState){
-        if(prevState.data !== this.state.data){
-            localStorage.setItem("data", JSON.stringify(this.state.data));
-        }
-    }
 
     changeComponent=(value)=>{
         let {component}=this.state;
@@ -69,7 +50,6 @@ class MainContainer extends Component {
                             }
                         </div>
                         <div className={styles.colMd12}>
-                            {/*<Tests/>*/}
                             <Component
                                 changeComponent={this.changeComponent}
                                 changeExamIndex={this.changeExamIndex}
