@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 class FormInput extends Component {
     render() {
         const {name, type, placeholder, onChange, onClick, className, value, error, children, label, checked, required, ...props}=this.props
-        console.log(className)
         if (className===undefined){
             return (
                 <React.Fragment>

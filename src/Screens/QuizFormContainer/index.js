@@ -3,6 +3,7 @@ import Form from "../../components/Form";
 import styles from "./styles.scss";
 import FormInput from "../../components/FormInput";
 import dataService from "../../services/dataService";
+import {uid,generateUID,useUID} from "react-uid";
 
 class QuizFormContainer extends Component {
     constructor(props) {
@@ -34,10 +35,16 @@ class QuizFormContainer extends Component {
         }
     }
 
+    id =()=>{
+        const data=JSON.parse(localStorage.getItem('data'))
+        return data.quizzes===[]
+    }
+
     addQuestion=()=> {
         const { data }= this.state;
         data.questions.push(
             {
+                id:this.id,
                 question: "",
                 answers: [{...this.props.emptyAnswer},{...this.emptyAnswer}],
                 correctAnswer: "",
@@ -60,18 +67,21 @@ class QuizFormContainer extends Component {
         this.setState({data:data})
     };
 
-    questionChange=(event,d)=>{
-        d.question = event.target.value;
+    questionChange=(event,index)=>{
+        const {data}=this.state;
+        data.questions[index].question = event.target.value;
         this.setState({data: this.state.data});
     };
 
-    answerChange=(event,da)=>{
-        da.answer = event.target.value;
+    answerChange=(event,index,i)=>{
+        const {data}=this.state;
+        data.questions[index].answers[i].answer = event.target.value;
         this.setState({data: this.state.data});
     };
 
-    correctAnswerChange=(event,i)=>{
-        i.correctAnswer = event.target.value*1;
+    correctAnswerChange=(event,index)=>{
+        const {data}=this.state;
+        data.questions[index].correctAnswer = event.target.value*1;
         this.setState({data: this.state.data});
     };
 
@@ -81,9 +91,9 @@ class QuizFormContainer extends Component {
         this.setState({data: data});
     };
 
-    deleteAnswer=(i,d)=>{
+    deleteAnswer=(i,index)=>{
         const {data}=this.state;
-        d.answers.splice(i,1);
+        data.questions[index].answers.splice(i,1);
         this.setState({data: data});
     };
 
@@ -107,6 +117,7 @@ class QuizFormContainer extends Component {
 
     render() {
         const {data}=this.state;
+        console.log(this.id())
         return (
             <div className={styles.quizContainer}>
                 <Form onSubmit={event=>this.onSubmit(event,"home")}>
@@ -139,7 +150,7 @@ class QuizFormContainer extends Component {
                                         <FormInput
                                             type="text"
                                             value={d.question}
-                                            onChange={event => this.questionChange(event, d)}
+                                            onChange={event => this.questionChange(event, index)}
                                             required={true}
                                         />
                                         <div key={index} className={styles.answers}>
@@ -153,14 +164,14 @@ class QuizFormContainer extends Component {
                                                                 name={index}
                                                                 type="radio"
                                                                 value={i}
-                                                                onChange={event => this.correctAnswerChange(event, d)}
+                                                                onChange={event => this.correctAnswerChange(event, index)}
                                                                 required={true}
                                                                 checked={d.correctAnswer===i}
                                                             />
                                                             <FormInput
                                                                 type="text"
                                                                 value={da.answer}
-                                                                onChange={event => this.answerChange(event, da)}
+                                                                onChange={event => this.answerChange(event, index, i)}
                                                                 required={true}
                                                             />
                                                             {
@@ -168,7 +179,7 @@ class QuizFormContainer extends Component {
                                                                     ? <FormInput
                                                                         type="button"
                                                                         value={"Delete"}
-                                                                        onClick={() => this.deleteAnswer(i, d)}
+                                                                        onClick={() => this.deleteAnswer(i, index)}
                                                                       />
                                                                     : null
                                                             }
