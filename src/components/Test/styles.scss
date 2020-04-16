@@ -1,0 +1,47 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  & .bar{
+    background-color: lightgrey;
+    width: 100%;
+    height: 24px;
+    position: sticky;
+    display: flex;
+    margin: 12px;
+    top: 10px;
+    & form {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+  }
+  & .inline{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin: 12px;
+    & form {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  & .box{
+    background-color: lightgrey;
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 240px;
+    height: 240px;
+    & form {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  & .modal{
+    min-height: 2000px;
+  }
+}

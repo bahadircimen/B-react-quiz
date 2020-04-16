@@ -19,28 +19,95 @@
 
     & .cardHeader {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 48px;
+      min-height: 96px;
       width: 100%;
       font-size: 24px;
       color: white;
       font-weight: bold;
       background-color: #727bd2;
+
+      & .progressBar {
+        margin: 24px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        min-width: 96%;
+        height: 3px;
+        background-color: #a3b3c5;
+
+        & .progress {
+          display: flex;
+          height: 3px;
+          align-items: center;
+          background-color: #a3b3c5;
+
+          & .step {
+            display: flex;
+            min-height: 3px;
+            background-color: green;
+            width: 100%;
+          }
+
+          & .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 24px;
+            min-width: 24px;
+            border-radius: 50%;
+            background-color: green;
+            color: #a3b3c5;
+
+            & i{
+            }
+          }
+        }
+      }
     }
 
     & .cardBody {
       display: flex;
-      justify-content: flex-start;
+      flex-direction: column;
       align-items: center;
+      height: max-content;
       width: 100%;
-      min-height: 240px;
       font-size: 20px;
       color: white;
       background-color: #a3b3c5;
 
       & label {
-        margin-left: 12px;
+        margin: 12px;
+      }
+
+      & .optionContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+
+        & .option {
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 96%;
+          height: 24px;
+          background-color: #8990d2;
+          border: 1px solid #8990d2;
+          border-radius: 12px;
+          margin: 6px 0 6px 0
+        }
+
+        & .option:hover {
+          background-color: #727bd2;
+        }
+        & .option:active {
+          transform: scaleX(0.9);
+        }
       }
     }
 
@@ -80,5 +147,29 @@
         margin: 0 12px;
       }
     }
+    animation:zoom-in 1s ease 0s 1 none;
+  }
+  @keyframes zoom-in{
+    from{opacity:0; transform:scale(0.1,0.1);}
+    to{opacity:1; transform:scale(1,1);}
   }
 }
+.zoom-enter {
+  opacity: 1;
+  transform: scale(1);
+}
+.zoom-enter-active {
+  opacity: 0;
+  transform: scale(0.1);
+  transition: opacity 250ms, transform 250ms;
+}
+.zoom-exit {
+  opacity: 0;
+  transform: scale(0.1);
+}
+.zoom-exit-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 250ms, transform 250ms;
+}
+

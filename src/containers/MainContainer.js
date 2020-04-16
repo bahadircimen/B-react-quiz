@@ -3,7 +3,8 @@ import styles from "./styles.scss";
 import Preview from "../Screens/Preview";
 import Home from "../Screens/Home";
 import QuizFormContainer from "../Screens/QuizFormContainer";
-
+import FormModal from "../components/FormModal";
+import Test from "../components/Test";
 
 class MainContainer extends Component {
     constructor(props) {
@@ -57,6 +58,8 @@ class MainContainer extends Component {
                                 data={this.state.data}
                                 component={component}
                             />
+                            <Test/>
+                            {/*<FormModal/>*/}
                         </div>
                     </div>
                 </div>

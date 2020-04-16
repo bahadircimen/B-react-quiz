@@ -200,7 +200,7 @@ class QuizFormContainer extends Component {
                     }
                     <FormInput
                         type="button"
-                        value={"Add an Question"}
+                        value={"Add a Question"}
                         onClick={this.addQuestion}
                     />
                     <button>Save Questions</button>

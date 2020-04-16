@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/B-react-quiz - Kopya.iml" filepath="$PROJECT_DIR$/.idea/B-react-quiz - Kopya.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../B-react-card-views/.idea/reactchasis.iml" filepath="$PROJECT_DIR$/../B-react-card-views/.idea/reactchasis.iml" />
     </modules>
   </component>
 </project>
