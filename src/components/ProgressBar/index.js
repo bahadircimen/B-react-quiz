@@ -10,20 +10,23 @@ class ProgressBar extends Component {
         }
     }
 
-    // componentDidUpdate(){
-    //     const {correctAnswer,count}=this.props;
-    //     if (correctAnswer[count]!==undefined){
-    //         this.setState({icon:"green",step:"green})
+    // componentDidUpdate() {
+    //     if (this.props.correctAnswer != null||undefined) {
+    //         this.setState({icon:"Green"});
     //     }
     // }
 
     render() {
+        console.log(this.props.className)
         return (
             <React.Fragment>
-                <div className={styles[`step${this.state.step}`]}></div>
-                <div className={styles[`icon${this.state.icon}`]}>
+                {/*<div className={styles[`icon${this.state.icon}`]}>*/}
+                {/*    <i className="fas fa-check fa-xs"/>*/}
+                {/*</div>*/}
+                <div className={styles[this.props.classNameIcon]}>
                     <i className="fas fa-check fa-xs"/>
                 </div>
+                <div className={styles[this.props.classNameStep]}></div>
             </React.Fragment>
         );
     }

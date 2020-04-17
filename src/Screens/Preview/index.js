@@ -11,9 +11,11 @@ class Preview extends Component {
             data: JSON.parse(localStorage.getItem('data')),
             count:0,
             correctAnswer:[],
-            clicked:false
+            clicked:false,
+            className:[]
         }
     }
+
 
     componentDidUpdate(pervState){
         if (this.state.clicked===true){
@@ -37,6 +39,7 @@ class Preview extends Component {
     previousQuestion=()=>{
         this.setState({count: this.state.count-1,clicked:true})
     };
+
 
     checkValue=(value)=> {
         const {data,correctAnswer,count}=this.state;
@@ -64,11 +67,24 @@ class Preview extends Component {
         this.setState({correctAnswer:correctAnswer});
     };
 
-    render() {
+    renderButton=()=>{{
         const {examIndex}=this.props;
         const data=this.state.data.quizzes;
         const {count,correctAnswer}=this.state;
-        console.log(data[examIndex].questions.length)
+        if(count+1!==data[examIndex].questions.length&&(correctAnswer[count]==null||undefined))
+            {return <i onClick={this.nextQuestion} className="fas fa-forward fa-lg"/>}
+        else if(count+1!==data[examIndex].questions.length&&(correctAnswer[count]!=null||undefined))
+            {return <i onClick={this.nextQuestion} className="fas fa-arrow-right fa-lg"/>}
+        else if(count+1===data[examIndex].questions.length)
+        {return <i onClick={()=>this.checkValue("home")} className="fas fa-check fa-lg"/>}
+    }}
+
+    render() {
+
+        const {examIndex}=this.props;
+        const data=this.state.data.quizzes;
+        const {count,correctAnswer}=this.state;
+        console.log(correctAnswer[count])
         return (
             <div className={styles.cardCont}>
                 <CSSTransition
@@ -87,14 +103,26 @@ class Preview extends Component {
                             {
                                 data[examIndex].questions.map((da,i)=>{
                                     return(
+                                        // <div key={i} style={{width:`${100/data[examIndex].questions.length}%`}} className={styles.progress}>
+                                        //     <div className={styles.step}></div>
+                                        //     <div  className={styles[`icon${""}`]}>
+                                        //         <i className="fas fa-check fa-xs"/>
+                                        //     </div>
+                                        // </div>
                                         <div key={i} style={{width:`${100/data[examIndex].questions.length}%`}} className={styles.progress}>
                                         <ProgressBar
-                                            icon={this.state.icon}
-                                            step={this.state.step}
-                                            i={i}
+                                            classNameIcon={correctAnswer[i] != null||undefined
+                                                ?"iconGreen"
+                                                :"icon"
+                                            }
+                                            classNameStep={correctAnswer[i] !==undefined
+                                                ?"stepGreen"
+                                                :"step"
+                                            }
+                                            key={i}
                                             data={this.state.data.quizzes}
                                             count={this.state.count}
-                                            correctAnswer={this.state.correctAnswer}
+                                            correctAnswer={this.state.correctAnswer[i]}
                                             examIndex={this.props.examIndex}
                                         />
                                         </div>
@@ -109,7 +137,7 @@ class Preview extends Component {
                             {
                                 data[examIndex].questions[count].answers.map((da,i)=>{
                                     return(
-                                        <div onClick={()=>this.getValues(i)} key={i} className={styles.option}>
+                                        <div className={styles[`${correctAnswer[count]==i ? "optionSelect":"option"}`]} key={count+""+i} onClick={()=>this.getValues(i)}>
                                             {i+1}. {da.answer}
                                         </div>
                                         // <div key={i} className={styles.cardFooter}>
@@ -122,11 +150,7 @@ class Preview extends Component {
                         </div>
                     </div>
                     <div className={styles.cardFooterNav}>
-                        {
-                            count+1===data[examIndex].questions.length
-                                ? <i onClick={()=>this.checkValue("home")} className="fas fa-check fa-lg"/>
-                                : <i onClick={this.nextQuestion} className="fas fa-arrow-right fa-lg"/>
-                        }
+                        {this.renderButton()}
                         {count>=1? <i onClick={this.previousQuestion} className="fas fa-arrow-left fa-lg"/>:null}
                     </div>
                 </div>

@@ -102,11 +102,27 @@
           margin: 6px 0 6px 0
         }
 
+        & .optionSelect {
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 96%;
+          height: 24px;
+          background-color: #98a7b8;
+          border: 1px solid #8990d2;
+          border-radius: 12px;
+          margin: 6px 0 6px 0
+        }
+
         & .option:hover {
           background-color: #727bd2;
         }
         & .option:active {
           transform: scaleX(0.9);
+        }
+        & .option:focus {
+          background-color: #888888;
         }
       }
     }

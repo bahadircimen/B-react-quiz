@@ -58,7 +58,7 @@ class MainContainer extends Component {
                                 data={this.state.data}
                                 component={component}
                             />
-                            <Test/>
+                            {/*<Test/>*/}
                             {/*<FormModal/>*/}
                         </div>
                     </div>
