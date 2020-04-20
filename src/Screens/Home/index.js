@@ -23,6 +23,17 @@ class Home extends Component {
         }
     }
 
+    async componentDidUpdate(prevProps){
+        const localData=await dataService.getData()
+        const {data}=this.state;
+        if (this.props.component!==prevProps.component){
+            this.setState({data:localData})
+        }
+        else{
+            null
+        }
+    }
+
     deleteQuiz=(index)=>{
         let data = this.state.data;
         data.quizzes.splice(index,1);
