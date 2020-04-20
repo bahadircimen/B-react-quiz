@@ -27,7 +27,7 @@ class Home extends Component {
         const localData=await dataService.getData()
         const {data}=this.state;
         if (this.props.component!==prevProps.component){
-            this.setState({data:localData})
+            this.setState({data:localData   })
         }
         else{
             null

@@ -40,6 +40,10 @@ class Preview extends Component {
         this.setState({count: this.state.count-1,clicked:true})
     };
 
+    changeQuestions=(i)=>{
+        this.setState({count:i})
+    };
+
 
     checkValue=(value)=> {
         const {data,correctAnswer,count}=this.state;
@@ -112,8 +116,11 @@ class Preview extends Component {
                                                 // </div>
                                                 <div key={i} style={{width:`${100/data[examIndex].questions.length}%`}} className={styles.progress}>
                                                     <ProgressBar
-                                                        classNameIcon={correctAnswer[i] === undefined
+                                                        changeQuestions={()=>this.changeQuestions(i)}
+                                                        classNameIcon={(correctAnswer[i] === undefined) && i>=count
                                                             ?"icon"
+                                                            :(correctAnswer[i] === undefined) && i<=count
+                                                            ?"iconYellow"
                                                             :correctAnswer[i] == null
                                                                 ?"iconYellow"
                                                                 :"iconBlue"
