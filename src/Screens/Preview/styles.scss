@@ -1,173 +1,273 @@
-.cardCont{
+.previewCont{
   display: flex;
-  flex-direction: column;
+  width: 100%;
+  height: 92vh;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  background-color: #CFD8DC;
 
-  & .card {
+  & .cardCont{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 48%;
+    width: 480px;
     height: max-content;
-    border: 2px solid #727bd2;
-    border-radius: 3px;
-    box-shadow: 3px 6px 12px 4px #c1c4c5;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 3px 6px 12px 6px #c1c4c5;
 
-    & .cardHeader {
+    & .card {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 96px;
-      width: 100%;
-      font-size: 24px;
-      color: white;
-      font-weight: bold;
-      background-color: #727bd2;
+      width: 480px;
+      height: max-content;
+      border-radius: 8px;
 
-      & .progressBar {
-        margin: 24px;
+      & .cardHeader {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        min-width: 96%;
-        height: 3px;
-        background-color: #a3b3c5;
+        min-height: 96px;
+        width: 100%;
+        border-radius: 8px 8px 0 0;
+        background-color: #eff2f2;
+        border-bottom: 1px solid #d2d5d5;
 
-        & .progress {
+        & label{
+          padding: 42px 0 0 0;
+          font-family: "Montserrat", sans-serif;
+          font-size: 28px;
+          font-weight: bold;
+        }
+
+        & .progressBar {
           display: flex;
-          height: 3px;
+          flex-wrap: wrap;
           align-items: center;
-          background-color: #a3b3c5;
+          min-width: 96%;
+          height: 3px;
+          background-color: #878787;
+          margin: 24px 0 48px 0;
 
-          & .step {
+          & .progress {
             display: flex;
-            min-height: 3px;
-            background-color: green;
-            width: 100%;
-          }
-
-          & .icon {
-            display: flex;
-            justify-content: center;
+            height: 3px;
             align-items: center;
-            height: 24px;
-            min-width: 24px;
-            border-radius: 50%;
-            background-color: green;
-            color: #a3b3c5;
+            background-color: #878787;
 
-            & i{
+            & .step {
+              display: flex;
+              min-height: 3px;
+              background-color: green;
+              width: 100%;
+            }
+
+            & .icon {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 24px;
+              min-width: 24px;
+              border-radius: 50%;
+              background-color: green;
+              color: #a3b3c5;
+
+              & i{
+              }
             }
           }
         }
       }
-    }
 
-    & .cardBody {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: max-content;
-      width: 100%;
-      font-size: 20px;
-      color: white;
-      background-color: #a3b3c5;
-
-      & label {
-        margin: 12px;
-      }
-
-      & .optionContainer {
-        width: 100%;
+      & .cardBody {
         display: flex;
         flex-direction: column;
         align-items: center;
+        height: max-content;
+        width: 100%;
+        font-size: 20px;
+        background-color: #f9f9f9;
+
+        & label {
+          font-family: "Montserrat", sans-serif;
+          font-size: 21px;
+          padding: 24px 0 36px 0;
+        }
+
+        & .optionContainer {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
 
 
-        & .option {
+          & .option {
+            cursor: pointer;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 90%;
+            height: 32px;
+            background-color: #e4e7e7;
+            border: 1px solid #e4e7e7;
+            border-radius: 24px;
+            margin: 0 0 12px 0;
+            padding-left: 16px;
+            font-family: "Open Sans", sans-serif;
+            font-size: 14px;
+            color: #717171;
+          }
+
+          & .optionSelect {
+            cursor: pointer;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 90%;
+            height: 32px;
+            background-color: #ffffff;
+            border: 1px solid #c0c3c3;
+            border-radius: 24px;
+            margin: 0 0 12px 0;
+            padding-left: 16px;
+            font-family: "Open Sans", sans-serif;
+            font-size: 14px;
+            color: #717171;
+          }
+
+          & .option:hover {
+            background-color: #dbdbdb;
+          }
+          & .option:active {
+            transform: scaleX(0.9);
+          }
+
+          & .optionSelect:hover {
+            background-color: #dbdbdb;
+          }
+          & .optionSelect:active {
+            transform: scale(0.9);
+          }
+        }
+      }
+
+      & .cardFooter {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        align-items: center;
+        width: 100%;
+        min-height: 24px;
+        font-size: 20px;
+        color: white;
+        background-color: #727bd2;
+
+        & input {
           cursor: pointer;
+          margin-left:12px ;
+          height: 18px;
+          width: 18px;
+        }
+      }
+
+      & .cardFooterNav {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        align-items: center;
+        width: 100%;
+        min-height: 24px;
+        padding: 20px 0;
+        border-radius: 0 0 8px 8px;
+        background-color: #eff2f2;
+        border-top: 1px solid #d2d5d5;
+        font-family: "Open Sans", sans-serif;
+        font-size: 14px;
+
+        & .nextButton{
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 96%;
-          height: 24px;
-          background-color: #8990d2;
-          border: 1px solid #8990d2;
-          border-radius: 12px;
-          margin: 6px 0 6px 0
+          height: 34px;
+          width: 64px;
+          cursor:pointer;
+          margin: 0 24px 0 24px;
+          color: #ffffff;
+          background-color: #3d5afe;
+          border: 1px solid #cccfcf;
+          border-radius: 24px;
         }
 
-        & .optionSelect {
-          cursor: pointer;
+        & .nextButton:hover{
+          background-color: #0a2ffe;
+        }
+
+        & .prevButton{
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 96%;
-          height: 24px;
-          background-color: #98a7b8;
-          border: 1px solid #8990d2;
-          border-radius: 12px;
-          margin: 6px 0 6px 0
+          height: 34px;
+          width: 64px;
+          cursor:pointer;
+          margin: 0 24px 0 24px;
+          border: 1px solid #cccfcf;
+          border-radius: 24px;
         }
 
-        & .option:hover {
-          background-color: #727bd2;
+        & .prevButton:hover{
+          background-color: #e2e5e7;
         }
-        & .option:active {
-          transform: scaleX(0.9);
+
+        & .skipButton{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 34px;
+          width: 64px;
+          cursor:pointer;
+          margin: 0 24px 0 24px;
+          border: 1px solid #cccfcf;
+          border-radius: 24px;
         }
-        & .option:focus {
-          background-color: #888888;
+
+        & .skipButton:hover{
+          background-color: #e2e5e7;
+        }
+
+        & .backButton{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 34px;
+          width: 64px;
+          cursor:pointer;
+          margin: 0 24px 0 24px;
+          border: 1px solid #cccfcf;
+          border-radius: 24px;
+        }
+
+        & .backButton:hover{
+          background-color: #e2e5e7;
+        }
+
+        & i{
+          color: #3d5afe;
+          cursor: pointer;
+          margin: 0 12px;
+          //0a2ffe
         }
       }
+      animation:zoom-in 0.5s ease 0s 1 none;
     }
-
-    & .cardFooter {
-      display: flex;
-      justify-content: flex-start;
-      flex-wrap: nowrap;
-      align-items: center;
-      width: 100%;
-      min-height: 24px;
-      font-size: 20px;
-      color: white;
-      background-color: #727bd2;
-
-      & input {
-        cursor: pointer;
-        margin-left:12px ;
-        height: 18px;
-        width: 18px;
-      }
+    @keyframes zoom-in{
+      from{opacity:0; transform:scale(0.1,0.1);}
+      to{opacity:1; transform:scale(1,1);}
     }
-
-    & .cardFooterNav {
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: space-between;
-      flex-wrap: nowrap;
-      align-items: center;
-      width: 100%;
-      min-height: 24px;
-      font-size: 18px;
-      color: white;
-      background-color: #727bd2;
-
-      & i{
-        cursor: pointer;
-        margin: 0 12px;
-      }
-    }
-    animation:zoom-in 1s ease 0s 1 none;
-  }
-  @keyframes zoom-in{
-    from{opacity:0; transform:scale(0.1,0.1);}
-    to{opacity:1; transform:scale(1,1);}
   }
 }
 .zoom-enter {
@@ -176,12 +276,12 @@
 }
 .zoom-enter-active {
   opacity: 0;
-  transform: scale(0.1);
+  transform: scale(0.5);
   transition: opacity 250ms, transform 250ms;
 }
 .zoom-exit {
   opacity: 0;
-  transform: scale(0.1);
+  transform: scale(0.5);
 }
 .zoom-exit-active {
   opacity: 1;

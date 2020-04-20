@@ -4,10 +4,10 @@
   width: 100%;
 }
 
-.stepGreen {
+.stepBlue {
   display: flex;
   min-height: 3px;
-  background-color: green;
+  background-color: #689bff;
   width: 100%;
 }
 
@@ -18,17 +18,37 @@
   height: 24px;
   min-width: 24px;
   border-radius: 50%;
-  background-color: #a3b3c5;
-  color: #a3b3c5;
+  background-color: #878787;
+
+  & i{
+    color: #f9f9f9;
+  }
 }
 
-  .iconGreen {
+.iconBlue {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 24px;
   min-width: 24px;
   border-radius: 50%;
-  background-color: green;
-  color: #a3b3c5;
+  background-color: #3d5afe;
+
+  & i{
+    color: #ffffff;
+  }
+}
+
+.iconYellow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  min-width: 24px;
+  border-radius: 50%;
+  background-color: #689bff;
+
+  & i{
+    color: #ffffff;
+  }
 }

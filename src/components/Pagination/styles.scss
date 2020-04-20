@@ -1,0 +1,43 @@
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 12px 0 12px 0;
+
+  & button{
+    cursor:pointer;
+    margin-right: 4px;
+    outline: none;
+    border:1px;
+    border-radius: 4px;
+    height: 24px;
+    width: 24px;
+    text-align: center;
+  }
+
+  & button:hover {
+    background-color: lightgrey;
+  }
+}
+
+.page-size {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  & button{
+    cursor:pointer;
+    margin-right: 4px;
+    outline: none;
+    border:1px;
+    border-radius: 4px;
+    height: 24px;
+    width: 36px;
+    text-align: center;
+  }
+
+  & button:hover {
+    background-color: lightgrey;
+  }
+}

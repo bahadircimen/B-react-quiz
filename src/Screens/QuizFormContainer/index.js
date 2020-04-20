@@ -21,8 +21,9 @@ class QuizFormContainer extends Component {
                     answers: [{...this.emptyAnswer},{...this.emptyAnswer}],
                     correctAnswer: "",
                 }]
-            }
+            },
 
+            count:0
         }
     }
 
@@ -97,6 +98,11 @@ class QuizFormContainer extends Component {
         this.setState({data: data});
     };
 
+    count=()=>{
+        const {count}=this.state
+        this.setState({count:count+1})
+    };
+
     onSubmit=(event,value)=>{
         event.preventDefault();
         const {data, localData} = this.state;
@@ -116,7 +122,7 @@ class QuizFormContainer extends Component {
     };
 
     render() {
-        const {data}=this.state;
+        const {data,count}=this.state;
         console.log(this.id())
         return (
             <div className={styles.quizContainer}>
@@ -196,7 +202,7 @@ class QuizFormContainer extends Component {
                                     </div>
                                 </div>
                             )
-                        })
+                        })[count]
                     }
                     <FormInput
                         type="button"
@@ -205,6 +211,7 @@ class QuizFormContainer extends Component {
                     />
                     <button>Save Questions</button>
                 </Form>
+                <button onClick={this.count}>count</button>
             </div>
         );
     }

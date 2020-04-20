@@ -17,16 +17,21 @@ class ProgressBar extends Component {
     // }
 
     render() {
-        console.log(this.props.className)
+        const{classNameStep,classNameIcon}=this.props;
         return (
             <React.Fragment>
                 {/*<div className={styles[`icon${this.state.icon}`]}>*/}
                 {/*    <i className="fas fa-check fa-xs"/>*/}
                 {/*</div>*/}
-                <div className={styles[this.props.classNameIcon]}>
-                    <i className="fas fa-check fa-xs"/>
+                <div className={styles[classNameStep]}></div>
+                <div className={styles[classNameIcon]}>
+                    {classNameIcon==="iconBlue"
+                        ? <i className="fas fa-check fa-xs"/>
+                        :classNameIcon==="iconYellow"
+                        ? <i className="fas fa-exclamation fa-xs"/>
+                        : null
+                    }
                 </div>
-                <div className={styles[this.props.classNameStep]}></div>
             </React.Fragment>
         );
     }

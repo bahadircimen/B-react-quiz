@@ -4,7 +4,8 @@
   flex-wrap: wrap;
   align-items: center;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  font-family: "Montserrat", sans-serif;
 
   & .cardAdd {
     cursor: pointer;
@@ -13,18 +14,19 @@
     justify-content: center;
     align-items: center;
     min-width: 240px;
-    min-height: 240px;
+    min-height: 282px;
     margin: 24px;
-    background-color: #727bd2;
-    border: 2px solid #727bd2;
-    color: white;
+    background-color: #eff2f2;;
+    color: #575757;
     font-size: 36px;
-    border-radius: 3px;
-    box-shadow: 3px 6px 12px #c1c4c5;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 1px 6px 10px 6px #bcbfc0;
   }
 
   & .cardAdd:hover {
-    background-color: #6263bb;
+      background-color: #e4e7e7;
+    transform: scale(1.048);
   }
 
   & .card {
@@ -35,24 +37,50 @@
     min-width:240px ;
     height: max-content;
     margin: 24px;
-    border: 2px solid #727bd2;
-    border-radius: 3px;
-    box-shadow: 3px 6px 12px #c1c4c5;
+    background-color: #eff2f2;;
+    color: #575757;
+    font-size: 36px;
+    border-radius: 8px;
+    box-shadow: 1px 6px 10px 6px #bcbfc0;
+
+    & label{
+      font-weight: bold;
+      padding: 6px 0 0 0;
+    }
 
     & .cardHeader {
-      background-color: #727bd2;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 60px;
+      min-height: 80px;
       width: 240px;
-      color: white;
-      font-size: 20px;
+      color: #575757;
+      font-size: 22px;
+      padding: 0 0 12px 0;
+
+      & .button{
+        width: 240px;
+        display: flex;
+        visibility: hidden ;
+        justify-content: flex-end;
+        padding: 6px 24px 0 0;
+        //position: fixed;
+        & i {
+          cursor: pointer;
+          color: #6f6f6f;
+        }
+
+        & i:hover {
+          color: #3f3f3f;
+        }
+      }
 
       & label{
-        font-size: 24px;
+        font-size: 26px;
+        padding: 0;
       }
+
     }
 
     & .cardBody {
@@ -61,98 +89,116 @@
       justify-content: center;
       align-items: center;
       height: max-content;
+      font-size: 18px;
+      width: 240px;
+      background-color: #f4f7f7;
+      padding: 12px 0 12px 0;
 
-      & .cardBodyTop {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 240px;
-        min-height: 66px;
-
-        & button {
-          cursor: pointer;
-          height: 36px;
-          width: 120px;
-          color: white;
-          background-color: royalblue;
-          border: 2px solid royalblue;
-          border-radius: 3px;
-          outline: none;
-        }
-
-        & button:hover {
-          background-color: #314f97;
-          border: 2px solid #314f97;
-        }
+      & label{
+        font-size: 20px;
       }
 
-      & .cardBodyBot {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 240px;
-        min-height: 66px;
-
-        & .cardBodyBotLeft {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          min-width: 120px;
-          min-height: 66px;
-
-          & button {
-            cursor: pointer;
-            min-width: 96px;
-            min-height: 36px;
-            color: white;
-            background-color: #23a523;
-            border: 2px solid #23a523;
-            border-radius: 3px;
-            outline: none;
-          }
-
-          & button:hover {
-            background-color: #207e20;
-            border: 2px solid #207e20;
-          }
-        }
-
-        & .cardBodyBotRight {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          min-width: 120px;
-          min-height: 66px;
-
-          & button {
-            cursor: pointer;
-            height: 36px;
-            width: 96px;
-            color: white;
-            background-color: red;
-            border: 2px solid red;
-            border-radius: 3px;
-            outline: none;
-          }
-
-          & button:hover {
-            background-color: #c50000;
-            border: 2px solid #c50000;
-          }
-        }
-      }
+      //& .cardBodyTop {
+      //  display: flex;
+      //  justify-content: center;
+      //  align-items: center;
+      //  width: 240px;
+      //  min-height: 66px;
+      //
+      //  & button {
+      //    cursor: pointer;
+      //    height: 36px;
+      //    width: 120px;
+      //    color: #e7e7e7;
+      //    background-color: royalblue;
+      //    border: 2px solid royalblue;
+      //    border-radius: 3px;
+      //    outline: none;
+      //  }
+      //
+      //  & button:hover {
+      //    background-color: #314f97;
+      //    border: 2px solid #314f97;
+      //  }
+      //}
+      //
+      //& .cardBodyBot {
+      //  display: flex;
+      //  justify-content: center;
+      //  align-items: center;
+      //  width: 240px;
+      //  min-height: 66px;
+      //
+      //}
     }
 
     & .cardFooter {
-      background-color: #727bd2;
       display: flex;
       justify-content: center;
       align-items: center;
       width: 240px;
-      color: white;
-      font-size: 24px;
+      color: #575757;
+      font-size: 20px;
       min-height: 48px;
 
+      & button {
+        cursor: pointer;
+        min-width: 96px;
+        min-height: 36px;
+        color: #e7e7e7;
+        border-radius: 6px;
+        outline: none;
+      }
+
+      & .cardBodyBotLeft {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 120px;
+        min-height: 66px;
+
+        & button {
+          background-color: #57a563;
+          border: 2px solid #57a563;
+        }
+
+        & button:hover {
+          background-color: #448745;
+          border: 2px solid #448745;
+        }
+      }
+
+      & .cardBodyBotRight {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 120px;
+        min-height: 66px;
+
+        & button {
+          background-color: #6288e1;
+          border: 2px solid #6288e1;
+        }
+
+        & button:hover {
+          background-color: royalblue;
+          border: 2px solid royalblue;
+        }
+      }
+    }
+  }
+  & .card:hover {
+    background-color: #e7e7e7 ;
+    transform: scale(1.048);
+
+    & .cardHeader{
+      & .button{
+        visibility: visible;
+      }
+    }
+
+    & .cardBody {
+      background-color: #eff2f2 ;
     }
   }
 }

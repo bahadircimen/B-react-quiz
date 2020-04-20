@@ -11,9 +11,9 @@ class MainContainer extends Component {
         super(props);
         this.components ={
             home: Home,
-            update: QuizFormContainer,
+            update: Home,
             preview: Preview,
-            create: QuizFormContainer
+            create: Home
         };
 
         this.state = {
@@ -36,20 +36,26 @@ class MainContainer extends Component {
         this.changeComponent(value)
     };
 
+    a=()=>{
+        let a=[1,2,3,4]
+        return a.map((d,index)=>{return d})[0];
+    }
     render() {
+        console.log(this.a())
         const { component } = this.state;
         const Component = this.components[this.state.component];
         return (
             <Fragment>
                 <div className={styles.container}>
                     <div className={styles.row}>
-                        <div className={styles.back}>
-                            {
-                                this.state.component==="home"
-                                ? null
-                                : <i className="fas fa-arrow-left fa-2x" onClick={()=>this.changeComponent("home")}/>
-                            }
-                        </div>
+                        {
+                            this.state.component==="preview"
+                                ?
+                                <div className={styles.back}>
+                                    <i style={{marginLeft:"4%"}} className="fas fa-arrow-left fa-2x" onClick={()=>this.changeComponent("home")}/>
+                                </div>
+                                : null
+                        }
                         <div className={styles.colMd12}>
                             <Component
                                 changeComponent={this.changeComponent}

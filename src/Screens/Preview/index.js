@@ -17,7 +17,7 @@ class Preview extends Component {
     }
 
 
-    componentDidUpdate(pervState){
+    componentDidUpdate(){
         if (this.state.clicked===true){
             setTimeout(()=> {
                 this.setState({clicked: false});
@@ -72,12 +72,12 @@ class Preview extends Component {
         const data=this.state.data.quizzes;
         const {count,correctAnswer}=this.state;
         if(count+1!==data[examIndex].questions.length&&(correctAnswer[count]==null||undefined))
-            {return <i onClick={this.nextQuestion} className="fas fa-forward fa-lg"/>}
+            {return <div className={styles.skipButton} onClick={this.nextQuestion}>Skip</div>}
         else if(count+1!==data[examIndex].questions.length&&(correctAnswer[count]!=null||undefined))
-            {return <i onClick={this.nextQuestion} className="fas fa-arrow-right fa-lg"/>}
+            {return <div className={styles.nextButton} onClick={this.nextQuestion}>Next</div>}
         else if(count+1===data[examIndex].questions.length)
-        {return <i onClick={()=>this.checkValue("home")} className="fas fa-check fa-lg"/>}
-    }}
+        {return <div className={styles.skipButton} onClick={()=>this.checkValue("home")}>Finish</div>}
+    }};
 
     render() {
 
@@ -86,75 +86,75 @@ class Preview extends Component {
         const {count,correctAnswer}=this.state;
         console.log(correctAnswer[count])
         return (
-            <div className={styles.cardCont}>
-                <CSSTransition
-                    in={this.state.clicked}
-                    timeout={500}
-                    classNames={{
-                        enter: styles.zoomEnter,
-                        enterActive: styles.zoomEnterActive,
-                        exit: styles.zoomExit,
-                        exitActive: styles.zoomExitActive
-                    }}>
-                <div className={styles.card}>
-                    <div className={styles.cardHeader}>
-                        {data[examIndex].quizTitle}
-                        <div className={styles.progressBar}>
-                            {
-                                data[examIndex].questions.map((da,i)=>{
-                                    return(
-                                        // <div key={i} style={{width:`${100/data[examIndex].questions.length}%`}} className={styles.progress}>
-                                        //     <div className={styles.step}></div>
-                                        //     <div  className={styles[`icon${""}`]}>
-                                        //         <i className="fas fa-check fa-xs"/>
-                                        //     </div>
-                                        // </div>
-                                        <div key={i} style={{width:`${100/data[examIndex].questions.length}%`}} className={styles.progress}>
-                                        <ProgressBar
-                                            classNameIcon={correctAnswer[i] != null||undefined
-                                                ?"iconGreen"
-                                                :"icon"
-                                            }
-                                            classNameStep={correctAnswer[i] !==undefined
-                                                ?"stepGreen"
-                                                :"step"
-                                            }
-                                            key={i}
-                                            data={this.state.data.quizzes}
-                                            count={this.state.count}
-                                            correctAnswer={this.state.correctAnswer[i]}
-                                            examIndex={this.props.examIndex}
-                                        />
-                                        </div>
-                                    )
-                                })
-                            }
+            <div className={styles.previewCont}>
+                <div className={styles.cardCont}>
+                    <CSSTransition
+                        in={this.state.clicked}
+                        timeout={500}
+                        classNames={{
+                            enter: styles.zoomEnter,
+                            enterActive: styles.zoomEnterActive,
+                            exit: styles.zoomExit,
+                            exitActive: styles.zoomExitActive
+                        }}>
+                        <div className={styles.card}>
+                            <div className={styles.cardHeader}>
+                                <label>{data[examIndex].quizTitle}</label>
+                                <div className={styles.progressBar}>
+                                    {
+                                        data[examIndex].questions.map((da,i)=>{
+                                            return(
+                                                // <div key={i} style={{width:`${100/data[examIndex].questions.length}%`}} className={styles.progress}>
+                                                //     <div className={styles.step}></div>
+                                                //     <div  className={styles[`icon${""}`]}>
+                                                //         <i className="fas fa-check fa-xs"/>
+                                                //     </div>
+                                                // </div>
+                                                <div key={i} style={{width:`${100/data[examIndex].questions.length}%`}} className={styles.progress}>
+                                                    <ProgressBar
+                                                        classNameIcon={correctAnswer[i] === undefined
+                                                            ?"icon"
+                                                            :correctAnswer[i] == null
+                                                                ?"iconYellow"
+                                                                :"iconBlue"
+                                                        }
+                                                        classNameStep={i <= count
+                                                            ?"stepBlue"
+                                                            :"step"
+                                                        }
+                                                        key={i}
+                                                        data={this.state.data.quizzes}
+                                                        count={this.state.count}
+                                                        correctAnswer={this.state.correctAnswer[i]}
+                                                        examIndex={this.props.examIndex}
+                                                    />
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+                            <div className={styles.cardBody}>
+                                <label>{data[examIndex].questions[count].question}</label>
+                                <div className={styles.optionContainer}>
+                                    {
+                                        data[examIndex].questions[count].answers.map((da,i)=>{
+                                            return(
+                                                <div className={styles[`${correctAnswer[count]==i ? "optionSelect":"option"}`]} key={count+""+i} onClick={()=>this.getValues(i)}>
+                                                    {i+1}. {da.answer}
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+                            <div className={styles.cardFooterNav}>
+                                {this.renderButton()}
+                                {count>=1? <div className={styles.backButton} onClick={this.previousQuestion}>Back</div>:null}
+                            </div>
                         </div>
-                    </div>
-                    <div className={styles.cardBody}>
-                        <label>{data[examIndex].questions[count].question}</label>
-                        <div className={styles.optionContainer}>
-                            {
-                                data[examIndex].questions[count].answers.map((da,i)=>{
-                                    return(
-                                        <div className={styles[`${correctAnswer[count]==i ? "optionSelect":"option"}`]} key={count+""+i} onClick={()=>this.getValues(i)}>
-                                            {i+1}. {da.answer}
-                                        </div>
-                                        // <div key={i} className={styles.cardFooter}>
-                                        //     <input key={i+""+count} a={i+""+count} type="radio" name={count} value={i} onChange={this.getValues}/>
-                                        //     <label>{i+1}. {da.answer}</label>
-                                        // </div>
-                                    )
-                                })
-                            }
-                        </div>
-                    </div>
-                    <div className={styles.cardFooterNav}>
-                        {this.renderButton()}
-                        {count>=1? <i onClick={this.previousQuestion} className="fas fa-arrow-left fa-lg"/>:null}
-                    </div>
+                    </CSSTransition>
                 </div>
-                </CSSTransition>
             </div>
         )
     }
