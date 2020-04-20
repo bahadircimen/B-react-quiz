@@ -53,7 +53,7 @@ class Home extends Component {
                     <div key={index} className={styles.card}>
                         <div className={styles.cardHeader}>
                             <div className={styles.button}>
-                                <i onClick={()=>this.deleteQuiz(index)} className="fas fa-trash-alt fa-xs"/>
+                                <i title={"Delete"} onClick={()=>this.deleteQuiz(index)} className="fas fa-trash-alt fa-xs"/>
                             </div>
                             <label>Quiz Title</label>
                             {d.quizTitle}

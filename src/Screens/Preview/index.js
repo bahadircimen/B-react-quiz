@@ -41,7 +41,13 @@ class Preview extends Component {
     };
 
     changeQuestions=(i)=>{
-        this.setState({count:i})
+        const {count}=this.state
+        if (i!==count) {
+            this.setState({count: i, clicked: true})
+        }
+        else {
+            this.setState({count: i})
+        }
     };
 
 
