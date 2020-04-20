@@ -135,7 +135,7 @@ class Preview extends Component {
                                                             ?"stepBlue"
                                                             :"step"
                                                         }
-                                                        key={i}
+                                                        i={i}
                                                         data={this.state.data.quizzes}
                                                         count={this.state.count}
                                                         correctAnswer={this.state.correctAnswer[i]}
