@@ -23,9 +23,9 @@ class Home extends Component {
         }
     }
 
-    deleteQuiz=(event)=>{
+    deleteQuiz=(index)=>{
         let data = this.state.data;
-        data.quizzes.splice(event.target.value,1);
+        data.quizzes.splice(index,1);
         this.setState({data:data});
         localStorage.setItem('data', JSON.stringify(data));
     };
@@ -42,8 +42,7 @@ class Home extends Component {
                     <div key={index} className={styles.card}>
                         <div className={styles.cardHeader}>
                             <div className={styles.button}>
-                                {/*<button value={index} onClick={this.deleteQuiz}>Delete</button>*/}
-                                <i className="fas fa-trash-alt fa-xs"/>
+                                <i onClick={()=>this.deleteQuiz(index)} className="fas fa-trash-alt fa-xs"/>
                             </div>
                             <label>Quiz Title</label>
                             {d.quizTitle}
@@ -51,7 +50,7 @@ class Home extends Component {
                         <div className={styles.cardBody}>
                             <label>Total Questions</label>
                             {d.questions.length}
-                            <label>Crerated At</label>
+                            <label>Created At</label>
                             {d.createdAt}
                         </div>
                         <div className={styles.cardFooter}>
